@@ -1,0 +1,57 @@
+body {
+    background-color: rgb(252, 245, 235);
+    text-align: center;
+}
+
+h1 {
+    font-size: 3em;
+        text-align: center;
+}
+
+table {
+    margin:auto;
+}
+
+thead th {
+    border: solid;
+    padding: 1px;
+    text-align: center;
+    font-size: 20px;
+    background-color: white;
+    border-width: 1.5px;
+
+}
+
+
+
+tbody td {
+    border: solid;
+    padding: 45px 90px;
+    text-align: left;
+    background-color: white;
+    border-width: 1.5px;
+    border-style: dotted;
+}
+
+tbody th {
+    border: solid;
+    padding: 3px;
+    text-align: left;
+    font-size: 20px;
+    background-color: white;
+    border-width: 1.5px;
+    border-style: dotted;
+}
+
+.navi {
+    background-color: rgb(104, 101, 98);
+    padding: 1px 0px;
+}
+
+.navi li {
+    display: inline-block;
+    width: 15%;
+    padding: 10px;
+    color: white;
+    font-weight: 800;
+}
