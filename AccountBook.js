@@ -33,8 +33,8 @@ let answer = 1;
 
 //날짜 호출기 제작해보자
 //document.querySelector('#fh1').value를 통해서 년도와 월까지 호출가능
-const day = document.querySelectorAll('input')[0].value;
-const day2 = `${day}-01`
+var day = document.querySelectorAll('input')[0].value;
+var day2 = `${day}-01`
 
 function getWeek(day2) { //ex) getDayOfWeek('2022-06-13')
 
@@ -111,22 +111,41 @@ switch (getWeek(day2)) {
         break;
 }
 
+let day3 = new Date(day2);
+let nextMonth = new Date(day3.setMonth(day3.getMonth() + 1));
+let lastday = new Date(nextMonth.setDate(nextMonth.getDate() - 1));
+
+function lastdayCall() {
+    day = document.querySelectorAll('input')[0].value;
+    day2 = `${day}-01`
+    day3 = new Date(day2);
+    nextMonth = new Date(day3.setMonth(day3.getMonth() + 1));
+    lastday = new Date(nextMonth.setDate(nextMonth.getDate() - 1));
+    return lastday.getDate();
+}
+
 
 fh1.addEventListener('input', function () {
-    const day = document.querySelectorAll('input')[0].value;
-    const day2 = `${day}-01`
+    // let day = document.querySelectorAll('input')[0].value;
+    // let day2 = `${day}-01`
 
-    function getWeek(day2) { //ex) getDayOfWeek('2022-06-13')
+    day = document.querySelectorAll('input')[0].value;
+    day2 = `${day}-01`
+
+
+
+    function getWeek() { //ex)('2022-06-13')
 
         const week = ['일', '월', '화', '수', '목', '금', '토'];
 
         const dayOfWeek = week[new Date(day2).getDay()];
 
         return dayOfWeek;
-
     }
-    switch (getWeek(day2)) {
+    switch (getWeek()) {
         case '일':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -138,9 +157,10 @@ fh1.addEventListener('input', function () {
             for (let i = 31; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
         case '월':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -152,9 +172,10 @@ fh1.addEventListener('input', function () {
             for (let i = 32; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
         case '화':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -166,9 +187,10 @@ fh1.addEventListener('input', function () {
             for (let i = 33; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
         case '수':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -180,9 +202,10 @@ fh1.addEventListener('input', function () {
             for (let i = 34; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
         case '목':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -194,9 +217,10 @@ fh1.addEventListener('input', function () {
             for (let i = 35; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
         case '금':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -208,9 +232,10 @@ fh1.addEventListener('input', function () {
             for (let i = 36; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
         case '토':
+            day = document.querySelectorAll('input')[0].value;
+            day2 = `${day}-01`;
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
@@ -222,13 +247,6 @@ fh1.addEventListener('input', function () {
             for (let i = 37; i <= 36; i++) {
                 th[i].innerText = '';
             }
-
             break;
     }
 })
-
-const today2 = new Date(day2);
-
-const yesterday = new Date(today2.setDate(today2.getDate() -1 ));
-
-console.log(yesterday);
