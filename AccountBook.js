@@ -1,9 +1,28 @@
-const td = document.querySelectorAll('td');
+var td = document.querySelectorAll('td');
 
-const th = document.querySelector('tbody').querySelectorAll('th');
+var th = document.querySelector('tbody').querySelectorAll('th');
 
 const fh1 = document.querySelector('#fh1');
 
+const tears = document.querySelector('#tears');
+
+const tears2 = document.querySelector('#tears2');
+
+function newtd() {
+    document.querySelector('#tears2').appendChild(document.createElement('td'));
+}
+
+function newth() {
+    document.querySelector('#tears').appendChild(document.createElement('th'));
+}
+
+function newtd2() {
+    document.querySelector('#tears4').appendChild(document.createElement('td'));
+}
+
+function newth2() {
+    document.querySelector('#tears3').appendChild(document.createElement('th'));
+}
 const today = new Date();
 
 const monthy = () => {
@@ -45,71 +64,6 @@ function getWeek(day2) { //ex) getDayOfWeek('2022-06-13')
     return dayOfWeek;
 
 }
-switch (getWeek(day2)) {
-    case '일':
-        for (let i = 0; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 31; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-    case '월':
-        for (let i = 1; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 32; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-    case '화':
-        for (let i = 2; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 33; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-    case '수':
-        for (let i = 3; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 34; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-    case '목':
-        for (let i = 4; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 35; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-    case '금':
-        for (let i = 5; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 36; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-    case '토':
-        for (let i = 6; i < th.length; i++) {
-            th[i].innerText = answer;
-            answer++;
-        };
-        for (let i = 37; i <= 36; i++) {
-            th[i].innerText = '';
-        }
-        break;
-}
 
 let day3 = new Date(day2);
 let nextMonth = new Date(day3.setMonth(day3.getMonth() + 1));
@@ -121,8 +75,100 @@ function lastdayCall() {
     day3 = new Date(day2);
     nextMonth = new Date(day3.setMonth(day3.getMonth() + 1));
     lastday = new Date(nextMonth.setDate(nextMonth.getDate() - 1));
+    th = document.querySelector('tbody').querySelectorAll('th');
+    td = document.querySelectorAll('td');
     return lastday.getDate();
 }
+
+var last = 0;
+
+switch (getWeek(day2)) {
+    case '일':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 0; i < last; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+    case '월':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 1; i < last + 1; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last + 1; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+    case '화':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 2; i < last + 2; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last + 2; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+    case '수':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 3; i < last + 3; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last + 3; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+    case '목':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 4; i < last + 4; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last + 4; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+    case '금':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 5; i < last + 5; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last + 5; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+    case '토':
+        lastdayCall();
+        last = lastdayCall();
+        for (let i = 6; i < last + 6; i++) {
+            th[i].innerText = answer;
+            answer++;
+        };
+        for (let i = last + 6; i < th.length; i++) {
+            th[i].remove();
+            td[i].remove();
+        }
+        break;
+}
+
 
 
 fh1.addEventListener('input', function () {
@@ -131,8 +177,6 @@ fh1.addEventListener('input', function () {
 
     day = document.querySelectorAll('input')[0].value;
     day2 = `${day}-01`
-
-
 
     function getWeek() { //ex)('2022-06-13')
 
@@ -144,108 +188,171 @@ fh1.addEventListener('input', function () {
     }
     switch (getWeek()) {
         case '일':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 0; i < th.length; i++) {
+            for (let i = 0; i < last; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 31; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
         case '월':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 1; i < th.length; i++) {
+            for (let i = 1; i < last + 1; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 32; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last + 1; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
         case '화':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 2; i < th.length; i++) {
+            for (let i = 2; i < last + 2; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 33; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last + 2; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
         case '수':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 3; i < th.length; i++) {
+            for (let i = 3; i < last + 3; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 34; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last + 3; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
         case '목':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 4; i < th.length; i++) {
+            for (let i = 4; i < last + 4; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 35; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last + 4; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
         case '금':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 5; i < th.length; i++) {
+            for (let i = 5; i < last + 5; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 36; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last + 5; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
         case '토':
-            day = document.querySelectorAll('input')[0].value;
-            day2 = `${day}-01`;
+            lastdayCall();
+            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+                newtd();
+                newth();
+            }
+            for (let i = 0; i < 2; i++) {
+                newtd2();
+                newth2();
+            }
+            last = lastdayCall();
             answer = 1;
             for (let ths of th) {
                 ths.innerText = '';
             }
-            for (let i = 6; i < th.length; i++) {
+            for (let i = 6; i < last + 6; i++) {
                 th[i].innerText = answer;
                 answer++;
             };
-            for (let i = 37; i <= 36; i++) {
-                th[i].innerText = '';
+            for (let i = last + 6; i < th.length; i++) {
+                th[i].remove();
+                td[i].remove();
             }
             break;
     }
