@@ -1,6 +1,5 @@
 body {
     background-color: rgb(252, 245, 235);
-    text-align: center;
 }
 
 
@@ -10,7 +9,9 @@ h1 {
 }
 
 table {
-    margin:auto;
+    margin:0px 200px;
+    width: 1500px;
+    /* word-break:break-all; */
 }
 
 thead th {
@@ -25,13 +26,26 @@ thead th {
 
 
 
-tbody td {
+tbody tr td {
     border: solid;
-    padding: 45px 90px;
+    padding: 5px 3px;
     text-align: left;
     background-color: white;
     border-width: 1.5px;
     border-style: dotted;
+    height: 80px;
+    vertical-align: top;
+    width: 20px;
+    font-size: 3px;
+    table-layout: fixed;
+    word-break: break-all;
+}
+
+tbody tr {
+    border: solid;
+    background-color: white;
+    height: 5px;
+    width: 20px;
 }
 
 tbody th {
@@ -44,7 +58,10 @@ tbody th {
     border-style: dotted;
 }
 
+
+
 .navi {
+    text-align: center;
     background-color: rgb(104, 101, 98);
     padding: 1px 0px;
 }
@@ -55,4 +72,8 @@ tbody th {
     padding: 10px;
     color: white;
     font-weight: 800;
+}
+
+footer {
+    text-align: center;
 }

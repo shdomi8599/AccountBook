@@ -55,7 +55,7 @@ let answer = 1;
 var day = document.querySelectorAll('input')[0].value;
 var day2 = `${day}-01`
 
-function getWeek(day2) { //ex) getDayOfWeek('2022-06-13')
+function getWeek(day2) {
 
     const week = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -172,13 +172,11 @@ switch (getWeek(day2)) {
 
 
 fh1.addEventListener('input', function () {
-    // let day = document.querySelectorAll('input')[0].value;
-    // let day2 = `${day}-01`
 
     day = document.querySelectorAll('input')[0].value;
     day2 = `${day}-01`
 
-    function getWeek() { //ex)('2022-06-13')
+    function getWeek() {
 
         const week = ['일', '월', '화', '수', '목', '금', '토'];
 
@@ -357,3 +355,57 @@ fh1.addEventListener('input', function () {
             break;
     }
 })
+
+
+/*  내일 할 작업 날짜가 잇는 데이터만 적용되도록 설정해놨음
+let thss = document.querySelector('tbody').querySelectorAll('th')
+
+let tdss = document.querySelector('tbody').querySelectorAll('td')
+
+for (let i = 0; i < thss.length; i++){
+    if (thss[i].innerText !==''){
+       let tdsss = tdss[i];
+                let ul = document.createElement('ul');
+    tdsss.addEventListener('click',function(){
+        let li = document.createElement('li');
+         tdsss.appendChild(ul);
+           ul.appendChild(li);
+         let useMoney = prompt("어디에 돈을 쓰셨습니까?")
+         let Money = prompt("얼마를 쓰셨습니까? (숫자만 입력해주세요.)")
+           li.innerText = `${useMoney} - ${Money}원`;
+ ul.style.display = 'inline-block';
+        ul.style.paddingLeft = '20px';
+        })
+     }
+}
+
+// 팝업 닫기 (box_popup에 data-role:popup, data-type구분)
+    $("div[data-role=popup] button[data-role=close]").on("click",function() {
+        var type = $(this).closest('div.box_popup').attr("data-type");
+        closeModal(type);
+    });
+});
+
+// open popup
+function openPopupKmooc(target) {
+    var target_class = ".box_popup."+target;
+    $(target_class).hide();
+	
+    posY = $(window).scrollTop();
+
+    $("html, body").addClass("not_scroll"); //overflow, fixed
+    $("main").css("top",-posY); //body 최상단 div에 posY 값을 줌
+    $(target_class).show(); //팝업띄우기
+}
+
+//팝업 닫기
+function closeModal(target) {
+    var target_class = $("div.box_popup."+target);
+
+    $("html, body").removeClass("not_scroll"); //스크롤 해제
+    var mainSteyl = $("main").prop("style");
+    mainSteyl.removeProperty("top"); //메인 태그에 style-top제거
+    $(window).scrollTop(posY); //팝업 띄우기 전 위치로
+    $(target_class).hide();
+}
+ */
