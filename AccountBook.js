@@ -8,6 +8,10 @@ const tears = document.querySelector('#tears');
 
 const tears2 = document.querySelector('#tears2');
 
+let thss = document.querySelector('tbody').querySelectorAll('th')
+
+let tdss = document.querySelector('tbody').querySelectorAll('td')
+
 function newtd() {
     document.querySelector('#tears2').appendChild(document.createElement('td'));
 }
@@ -77,8 +81,12 @@ function lastdayCall() {
     lastday = new Date(nextMonth.setDate(nextMonth.getDate() - 1));
     th = document.querySelector('tbody').querySelectorAll('th');
     td = document.querySelectorAll('td');
+    thss = document.querySelector('tbody').querySelectorAll('th')
+    tdss = document.querySelector('tbody').querySelectorAll('td')
     return lastday.getDate();
 }
+
+
 
 var last = 0;
 
@@ -208,6 +216,8 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
         case '월':
             lastdayCall();
@@ -232,6 +242,8 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
         case '화':
             lastdayCall();
@@ -256,6 +268,8 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
         case '수':
             lastdayCall();
@@ -280,6 +294,8 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
         case '목':
             lastdayCall();
@@ -304,6 +320,8 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
         case '금':
             lastdayCall();
@@ -328,6 +346,8 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
         case '토':
             lastdayCall();
@@ -352,60 +372,113 @@ fh1.addEventListener('input', function () {
                 th[i].remove();
                 td[i].remove();
             }
+            tdssDelete();
+            tdSetting();
             break;
     }
 })
 
+//   가장 최근에 썼던 코드
+function tdSetting() {
+    for (let i = 0; i < thss.length; i++) {
+        if (thss[i].innerText !== '') {
+            let tdsss = tdss[i];
+            let ul = document.createElement('ul');
+            ul.style.display = 'inline-block';
+            ul.style.paddingLeft = '20px';
+            ul.style.height = '70px';
+            ul.style.width = '180px';
+            ul.style.overflowY = 'scroll';
+            function tdEvent() {
+                let li = document.createElement('li');
+                tdsss.appendChild(ul);
+                ul.appendChild(li);
+                let check = confirm("내용을 추가하실건가요?")
+                if (check == true) {
+                    let useMoney = prompt("어디에 돈을 쓰셨습니까?(공백없이 입력해주세요.)")
 
-/*  내일 할 작업 날짜가 잇는 데이터만 적용되도록 설정해놨음
-let thss = document.querySelector('tbody').querySelectorAll('th')
+                    if (useMoney !== null && useMoney.indexOf(' ') === -1 && useMoney !== 'q' && useMoney !== '' && useMoney.length <= 15) {
+                        let Money = parseInt(prompt("얼마를 쓰셨습니까? (숫자만 입력해주세요.)"))
+                        if (isNaN(Money) == true) {
+                            return li.remove(alert("숫자만 입력해주세요."));
+                        } else {
+                            return li.innerText = `${useMoney} - ${Money}원`;
+                        }
+                    }
+                    else if (useMoney === null) {
+                        return li.remove(alert("정상적으로 취소되었습니다."));
+                    }
+                    else if (useMoney === 'q') {
+                        return li.remove(alert("정상적으로 취소되었습니다."));
+                    }
+                    else {
+                        return li.remove(alert("공백이 존재합니다. 다시 진행해주세요."));
+                    }
+                } else {
+                    li.remove(alert("정상적으로 취소되었습니다."));
+                }
+            } tdsss.addEventListener('click', tdEvent);
+            fh1.addEventListener('input', () => {
+                tdsss.removeEventListener('click', tdEvent);
+            });
+        }
 
-let tdss = document.querySelector('tbody').querySelectorAll('td')
-
-for (let i = 0; i < thss.length; i++){
-    if (thss[i].innerText !==''){
-       let tdsss = tdss[i];
-                let ul = document.createElement('ul');
-    tdsss.addEventListener('click',function(){
-        let li = document.createElement('li');
-         tdsss.appendChild(ul);
-           ul.appendChild(li);
-         let useMoney = prompt("어디에 돈을 쓰셨습니까?")
-         let Money = prompt("얼마를 쓰셨습니까? (숫자만 입력해주세요.)")
-           li.innerText = `${useMoney} - ${Money}원`;
- ul.style.display = 'inline-block';
-        ul.style.paddingLeft = '20px';
-        })
-     }
+    }
 }
 
-// 팝업 닫기 (box_popup에 data-role:popup, data-type구분)
-    $("div[data-role=popup] button[data-role=close]").on("click",function() {
-        var type = $(this).closest('div.box_popup').attr("data-type");
-        closeModal(type);
-    });
-});
-
-// open popup
-function openPopupKmooc(target) {
-    var target_class = ".box_popup."+target;
-    $(target_class).hide();
-	
-    posY = $(window).scrollTop();
-
-    $("html, body").addClass("not_scroll"); //overflow, fixed
-    $("main").css("top",-posY); //body 최상단 div에 posY 값을 줌
-    $(target_class).show(); //팝업띄우기
+function tdssDelete() {
+    for (let tdsss of tdss) {
+        tdsss.innerHTML = "";
+    }
 }
 
-//팝업 닫기
-function closeModal(target) {
-    var target_class = $("div.box_popup."+target);
+//최초 loading 시에 한 번 실행되야하는 코드
+tdSetting()
 
-    $("html, body").removeClass("not_scroll"); //스크롤 해제
-    var mainSteyl = $("main").prop("style");
-    mainSteyl.removeProperty("top"); //메인 태그에 style-top제거
-    $(window).scrollTop(posY); //팝업 띄우기 전 위치로
-    $(target_class).hide();
-}
- */
+// function tdSetting() {
+//     for (let i = 0; i < thss.length; i++) {
+//         if (thss[i].innerText !== '') {
+//             let tdsss = tdss[i];
+//             let ul = document.createElement('ul');
+//             ul.style.display = 'inline-block';
+//             ul.style.paddingLeft = '20px';
+//             ul.style.height = '70px';
+//             ul.style.width = '180px';
+//             ul.style.overflowY = 'scroll';
+//             function tdEvent() {
+//                 let li = document.createElement('li');
+//                 tdsss.appendChild(ul);
+//                 ul.appendChild(li);
+//                 let check = confirm("내용을 추가하실건가요?")
+//                 if (check == true) {
+//                     let useMoney = prompt("어디에 돈을 쓰셨습니까?(공백없이 입력해주세요.)")
+
+//                     if (useMoney !== null && useMoney.indexOf(' ') === -1 && useMoney !== 'q' && useMoney !== '' && useMoney.length <= 15) {
+//                         let Money = parseInt(prompt("얼마를 쓰셨습니까? (숫자만 입력해주세요.)"))
+//                         if (isNaN(Money) == true) {
+//                             return li.remove(alert("숫자만 입력해주세요."));
+//                         } else {
+//                             return li.innerText = `${useMoney} - ${Money}원`;
+//                         }
+//                     }
+//                     else if (useMoney === null) {
+//                         return li.remove(alert("정상적으로 취소되었습니다."));
+//                     }
+//                     else if (useMoney === 'q') {
+//                         return li.remove(alert("정상적으로 취소되었습니다."));
+//                     }
+//                     else {
+//                         return li.remove(alert("공백이 존재합니다. 다시 진행해주세요."));
+//                     }
+//                 } else {
+//                     li.remove(alert("정상적으로 취소되었습니다."));
+//                 }
+//             } tdsss.addEventListener('click', tdEvent);
+//             const delete_event = document.getElementById('delete_event');
+//             delete_event.addEventListener('click', () => {
+//                 tdsss.removeEventListener('click', tdEvent);
+//             });
+//         }
+
+//     }
+// }
