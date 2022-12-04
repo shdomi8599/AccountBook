@@ -8,9 +8,11 @@ const tears = document.querySelector('#tears');
 
 const tears2 = document.querySelector('#tears2');
 
-let thss = document.querySelector('tbody').querySelectorAll('th')
+let dataReset = document.querySelector('#dataReset');
 
-let tdss = document.querySelector('tbody').querySelectorAll('td')
+let thss = document.querySelector('tbody').querySelectorAll('th');
+
+let tdss = document.querySelector('tbody').querySelectorAll('td');
 
 function newtd() {
     document.querySelector('#tears2').appendChild(document.createElement('td'));
@@ -378,46 +380,145 @@ fh1.addEventListener('input', function () {
     }
 })
 
-//   가장 최근에 썼던 코드
+
+//ul과 li세팅을 위한 메소드
 function tdSetting() {
     for (let i = 0; i < thss.length; i++) {
         if (thss[i].innerText !== '') {
             let tdsss = tdss[i];
             let ul = document.createElement('ul');
-            ul.style.display = 'inline-block';
-            ul.style.paddingLeft = '20px';
+            ul.style.display = 'flex';
+            ul.style.paddingLeft = '10px';
             ul.style.height = '70px';
             ul.style.width = '180px';
             ul.style.overflowY = 'scroll';
+            ul.style.flexWrap = 'wrap';
             function tdEvent() {
                 let li = document.createElement('li');
+                let button = document.createElement('button');
+                let newbr = document.createElement('br');
+                //초기화 버튼을 위한 메소드        
+                function allUlDelete() {
+                    let allUl = document.querySelector('table').querySelectorAll('ul');
+                    for (i of allUl) {
+                        if (tdsss.children.length != 0) {
+                            while (i.hasChildNodes()) {
+                                i.removeChild(i.firstChild);
+                            }
+                            i.remove();
+                        }
+                    }
+                }
                 tdsss.appendChild(ul);
                 ul.appendChild(li);
+                ul.appendChild(button);
+                ul.appendChild(newbr);
+                dataReset.addEventListener('click', allUlDelete);
+                li.style.display = 'inline';
+                li.style.height = '15px';
+                li.style.width = '80%';
+                button.style.width = '20%';
+                button.style.height = '20px';
+                button.style.marginLeft = 'auto';
+                button.style.borderColor = 'white';
+                button.innerText = '삭제';
+                button.style.display = 'inline';
+                button.style.fontSize = '1px';
+                button.style.padding = '2px';
+                button.addEventListener('mouseup', function (e) {
+                    e.preventDefault();
+                    if (ul.children.length < 4) {
+                        ul.remove();
+                        ul.removeChild(li);
+                        ul.removeChild(button);
+                        ul.removeChild(newbr);
+                    } else {
+                        ul.removeChild(li);
+                        ul.removeChild(button);
+                        ul.removeChild(newbr);
+                    }
+                });
+                button.addEventListener('mouseover', function (e) {
+                    e.stopPropagation();
+                    button.style.borderColor = 'black';
+                });
+                button.addEventListener('mouseout', function (e) {
+                    e.stopPropagation();
+                    button.style.borderColor = 'white';
+                })
+
                 let check = confirm("내용을 추가하실건가요?")
                 if (check == true) {
-                    let useMoney = prompt("어디에 돈을 쓰셨습니까?(공백없이 입력해주세요.)")
+                    let useMoney =
+                        prompt("어디에 돈을 쓰셨습니까? 공백없이 입력해주세요. 취소 : q입력")
 
                     if (useMoney !== null && useMoney.indexOf(' ') === -1 && useMoney !== 'q' && useMoney !== '' && useMoney.length <= 15) {
                         let Money = parseInt(prompt("얼마를 쓰셨습니까? (숫자만 입력해주세요.)"))
                         if (isNaN(Money) == true) {
-                            return li.remove(alert("숫자만 입력해주세요."));
+                            if (ul.children.length < 4) {
+                                ul.remove();
+                                li.remove(alert("숫자만 입력해주세요."));
+                                ul.removeChild(button);
+                                ul.removeChild(newbr);
+                            } else {
+                                li.remove(alert("숫자만 입력해주세요."));
+                                ul.removeChild(button);
+                                ul.removeChild(newbr);
+                            }
                         } else {
-                            return li.innerText = `${useMoney} - ${Money}원`;
+                            li.innerText = `${useMoney} - ${Money}원 `;
                         }
                     }
                     else if (useMoney === null) {
-                        return li.remove(alert("정상적으로 취소되었습니다."));
+                        if (ul.children.length < 4) {
+                            ul.remove();
+                            li.remove(alert("정상적으로 취소되었습니다."));
+                            ul.removeChild(button);
+                            ul.removeChild(newbr);
+                        } else {
+                            li.remove(alert("정상적으로 취소되었습니다."));
+                            ul.removeChild(button);
+                            ul.removeChild(newbr);
+                        }
                     }
                     else if (useMoney === 'q') {
-                        return li.remove(alert("정상적으로 취소되었습니다."));
+                        if (ul.children.length < 4) {
+                            ul.remove();
+                            li.remove(alert("정상적으로 취소되었습니다."));
+                            ul.removeChild(button);
+                            ul.removeChild(newbr);
+                        } else {
+                            li.remove(alert("정상적으로 취소되었습니다."));
+                            ul.removeChild(button);
+                            ul.removeChild(newbr);
+                        }
                     }
                     else {
-                        return li.remove(alert("공백이 존재합니다. 다시 진행해주세요."));
+                        if (ul.children.length < 4) {
+                            ul.remove();
+                            li.remove(alert("공백이 존재합니다. 다시 진행해주세요."));
+                            ul.removeChild(button);
+                            ul.removeChild(newbr);
+                        } else {
+                            li.remove(alert("공백이 존재합니다. 다시 진행해주세요."));
+                            ul.removeChild(button);
+                            ul.removeChild(newbr);
+                        }
                     }
                 } else {
-                    li.remove(alert("정상적으로 취소되었습니다."));
+                    if (ul.children.length < 4) {
+                        ul.remove();
+                        li.remove(alert("정상적으로 취소되었습니다."));
+                        ul.removeChild(button);
+                        ul.removeChild(newbr);
+                    } else {
+                        li.remove(alert("정상적으로 취소되었습니다."));
+                        ul.removeChild(button);
+                        ul.removeChild(newbr);
+                    }
                 }
-            } tdsss.addEventListener('click', tdEvent);
+            }
+            tdsss.addEventListener('click', tdEvent);
             fh1.addEventListener('input', () => {
                 tdsss.removeEventListener('click', tdEvent);
             });
@@ -429,56 +530,10 @@ function tdSetting() {
 function tdssDelete() {
     for (let tdsss of tdss) {
         tdsss.innerHTML = "";
+
     }
 }
 
-//최초 loading 시에 한 번 실행되야하는 코드
+//최초 loading 시에 한 번은 꼭 실행되야하는 코드
 tdSetting()
 
-// function tdSetting() {
-//     for (let i = 0; i < thss.length; i++) {
-//         if (thss[i].innerText !== '') {
-//             let tdsss = tdss[i];
-//             let ul = document.createElement('ul');
-//             ul.style.display = 'inline-block';
-//             ul.style.paddingLeft = '20px';
-//             ul.style.height = '70px';
-//             ul.style.width = '180px';
-//             ul.style.overflowY = 'scroll';
-//             function tdEvent() {
-//                 let li = document.createElement('li');
-//                 tdsss.appendChild(ul);
-//                 ul.appendChild(li);
-//                 let check = confirm("내용을 추가하실건가요?")
-//                 if (check == true) {
-//                     let useMoney = prompt("어디에 돈을 쓰셨습니까?(공백없이 입력해주세요.)")
-
-//                     if (useMoney !== null && useMoney.indexOf(' ') === -1 && useMoney !== 'q' && useMoney !== '' && useMoney.length <= 15) {
-//                         let Money = parseInt(prompt("얼마를 쓰셨습니까? (숫자만 입력해주세요.)"))
-//                         if (isNaN(Money) == true) {
-//                             return li.remove(alert("숫자만 입력해주세요."));
-//                         } else {
-//                             return li.innerText = `${useMoney} - ${Money}원`;
-//                         }
-//                     }
-//                     else if (useMoney === null) {
-//                         return li.remove(alert("정상적으로 취소되었습니다."));
-//                     }
-//                     else if (useMoney === 'q') {
-//                         return li.remove(alert("정상적으로 취소되었습니다."));
-//                     }
-//                     else {
-//                         return li.remove(alert("공백이 존재합니다. 다시 진행해주세요."));
-//                     }
-//                 } else {
-//                     li.remove(alert("정상적으로 취소되었습니다."));
-//                 }
-//             } tdsss.addEventListener('click', tdEvent);
-//             const delete_event = document.getElementById('delete_event');
-//             delete_event.addEventListener('click', () => {
-//                 tdsss.removeEventListener('click', tdEvent);
-//             });
-//         }
-
-//     }
-// }
