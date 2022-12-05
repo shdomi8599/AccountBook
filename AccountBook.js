@@ -61,6 +61,8 @@ let answer = 1;
 var day = document.querySelectorAll('input')[0].value;
 var day2 = `${day}-01`
 
+
+//날짜에 따른 요일을 반환해주는 함수
 function getWeek(day2) {
 
     const week = ['일', '월', '화', '수', '목', '금', '토'];
@@ -71,10 +73,13 @@ function getWeek(day2) {
 
 }
 
+
 let day3 = new Date(day2);
 let nextMonth = new Date(day3.setMonth(day3.getMonth() + 1));
 let lastday = new Date(nextMonth.setDate(nextMonth.getDate() - 1));
 
+
+//요일 세팅 시, 이전 값들이 초기화되는 것이 목적인 함수
 function lastdayCall() {
     day = document.querySelectorAll('input')[0].value;
     day2 = `${day}-01`
@@ -88,7 +93,23 @@ function lastdayCall() {
     return lastday.getDate();
 }
 
-
+//lastdaycall 함수 간소화
+function dayCall() {
+    lastdayCall();
+    for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
+        newtd();
+        newth();
+    }
+    for (let i = 0; i < 2; i++) {
+        newtd2();
+        newth2();
+    }
+    last = lastdayCall();
+    answer = 1;
+    for (let ths of th) {
+        ths.innerText = '';
+    }
+}
 
 var last = 0;
 
@@ -180,7 +201,7 @@ switch (getWeek(day2)) {
 }
 
 
-
+//요일 세팅 시 실행되는 함수
 fh1.addEventListener('input', function () {
 
     day = document.querySelectorAll('input')[0].value;
@@ -196,20 +217,7 @@ fh1.addEventListener('input', function () {
     }
     switch (getWeek()) {
         case '일':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 0; i < last; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -222,20 +230,7 @@ fh1.addEventListener('input', function () {
             tdSetting();
             break;
         case '월':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 1; i < last + 1; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -248,20 +243,7 @@ fh1.addEventListener('input', function () {
             tdSetting();
             break;
         case '화':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 2; i < last + 2; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -274,20 +256,7 @@ fh1.addEventListener('input', function () {
             tdSetting();
             break;
         case '수':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 3; i < last + 3; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -300,20 +269,7 @@ fh1.addEventListener('input', function () {
             tdSetting();
             break;
         case '목':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 4; i < last + 4; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -326,20 +282,7 @@ fh1.addEventListener('input', function () {
             tdSetting();
             break;
         case '금':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 5; i < last + 5; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -352,20 +295,7 @@ fh1.addEventListener('input', function () {
             tdSetting();
             break;
         case '토':
-            lastdayCall();
-            for (let i = document.querySelector('#tears').children.length; i < 7; i++) {
-                newtd();
-                newth();
-            }
-            for (let i = 0; i < 2; i++) {
-                newtd2();
-                newth2();
-            }
-            last = lastdayCall();
-            answer = 1;
-            for (let ths of th) {
-                ths.innerText = '';
-            }
+            dayCall();
             for (let i = 6; i < last + 6; i++) {
                 th[i].innerText = answer;
                 answer++;
@@ -397,7 +327,8 @@ function tdSetting() {
                 let li = document.createElement('li');
                 let button = document.createElement('button');
                 let newbr = document.createElement('br');
-                //초기화 버튼을 위한 메소드        
+                //초기화 버튼을 위한 메소드
+                //처음 만들었던 tdssDelete보다 훨씬 깔끔하고 좋은 td안의 데이터 삭제 방법        
                 function allUlDelete() {
                     let allUl = document.querySelector('table').querySelectorAll('ul');
                     for (i of allUl) {
@@ -425,6 +356,7 @@ function tdSetting() {
                 button.style.display = 'inline';
                 button.style.fontSize = '1px';
                 button.style.padding = '2px';
+                button.className = 'no-print';
                 button.addEventListener('mouseup', function (e) {
                     e.preventDefault();
                     if (ul.children.length < 4) {
@@ -527,6 +459,7 @@ function tdSetting() {
     }
 }
 
+//td안의 데이터를 지우기 위한 작업
 function tdssDelete() {
     for (let tdsss of tdss) {
         tdsss.innerHTML = "";
@@ -536,4 +469,25 @@ function tdssDelete() {
 
 //최초 loading 시에 한 번은 꼭 실행되야하는 코드
 tdSetting()
+
+
+//프린트를 위한 함수
+const onPrint = () => {
+    const html  = document.querySelector('html');
+    const printSection = document.querySelector('section').innerHTML;
+    const printDiv = document.createElement('div');
+    html.appendChild(printDiv);
+    printDiv.innerHTML = printSection;
+    document.body.style.display = 'none';
+    window.print();
+    document.body.style.display = 'block';
+    printDiv.style.display = 'none';
+}
+
+
+//프린트 하기
+let printButton = document.querySelector('#printButton');
+
+printButton.addEventListener('click',onPrint);
+
 

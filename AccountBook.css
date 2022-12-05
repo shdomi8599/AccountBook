@@ -4,14 +4,29 @@ body {
 
 
 h1 {
+    font-style:oblique;
     font-size: 3em;
     text-align: center;
     margin-bottom: 10px;
+    display: inline;
+    width: 94%;
+    margin-left: 800px;
+}
+
+#fh1 {
+    display: inline-block;
+    text-align: center;
+    width: 6%;
+margin-left: 100px;
+padding: 6px;
+font-size: 16px;
+    
 }
 
 table {
     margin: 0px 200px;
     width: 1500px;
+    color :rgb(204, 147, 226);
     /* word-break:break-all; */
 }
 
@@ -78,3 +93,24 @@ tbody th {
 footer {
     text-align: center;
 }
+
+/*클래스 .no-print를 갖고 있는 영역은 프린트가 안되게 해주는 스타일*/
+@media print
+
+{    
+    .no-print
+    {
+        display: none !important;
+    }
+}
+
+table tbody th:nth-child(7n+1) {
+    color: red;
+    border-color: rgb(204, 147, 226);
+}
+
+table tbody th:nth-child(7n+7) {
+    color: blue;
+    border-color: rgb(204, 147, 226);
+}
+

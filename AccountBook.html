@@ -13,23 +13,23 @@
     <header class="navi">
         <ul>
             <li id="dataReset">초기화하기</li>
-            <li>인쇄하기</li>
+            <li id="printButton">인쇄하기</li>
             <li>회원가입</li>
             <li>로그인</li>
         </ul>
     </header>
-    <h1> Account Book <input type="month" id="fh1" value="2002-02"></h1>
-    <div>
+    <section>
+        <h1> Account Book </h1> <input type="month" id="fh1" value="2002-02">
         <table style="table-layout: fixed" id="tabler">
             <thead>
                 <tr>
-                    <th>일요일</th>
+                    <th style="color: red; border-color: rgb(204, 147, 226);">일요일</th>
                     <th>월요일</th>
                     <th>화요일</th>
                     <th>수요일</th>
                     <th>목요일</th>
                     <th>금요일</th>
-                    <th>토요일</th>
+                    <th style="color: blue; border-color: rgb(204, 147, 226);">토요일</th>
                 </tr>
             </thead>
             <tbody>
@@ -133,7 +133,17 @@
                 </tr>
             </tbody>
         </table>
-    </div>
+        <style type="text/css" media="print">
+            /*프린트가 실행될 때만 페이지 전체의 css속성을 변경*/
+            @page {
+                size: 320mm 250mm;
+                margin: 150px 100px -150px -60px;
+                /*인쇄 시 배경화면컬러 추가 속성 */
+                -webkit-print-color-adjust: exact;
+                background-color: rgb(252, 245, 235);
+            }
+        </style>
+    </section>
     <footer>copyright 나</footer>
     <script src="AccountBook.js"></script>
 </body>
