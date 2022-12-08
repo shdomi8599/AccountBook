@@ -1,32 +1,34 @@
 body {
     background-color: rgb(252, 245, 235);
+    margin: 0;
 }
 
 
 h1 {
-    font-style:oblique;
+    font-style: oblique;
     font-size: 3em;
     text-align: center;
-    margin-bottom: 10px;
     display: inline;
     width: 94%;
-    margin-left: 800px;
+    margin: 500px 0px 10px 800px;
 }
 
 #fh1 {
     display: inline-block;
     text-align: center;
     width: 6%;
-margin-left: 100px;
-padding: 6px;
-font-size: 16px;
-    
+    margin-left: 100px;
+    margin-top: 50px;
+
+    padding: 6px;
+    font-size: 16px;
+
 }
 
 table {
     margin: 0px 200px;
     width: 1500px;
-    color :rgb(204, 147, 226);
+    color: rgb(204, 147, 226);
     /* word-break:break-all; */
 }
 
@@ -82,12 +84,15 @@ tbody th {
     padding: 1px 0px;
 }
 
+
 .navi li {
-    display: inline-block;
+    word-spacing: 100px;
+    display: inline;
     width: 15%;
-    padding: 10px;
     color: white;
     font-weight: 800;
+    margin-left: 100px;
+    margin-right: 100px;
 }
 
 footer {
@@ -95,11 +100,8 @@ footer {
 }
 
 /*클래스 .no-print를 갖고 있는 영역은 프린트가 안되게 해주는 스타일*/
-@media print
-
-{    
-    .no-print
-    {
+@media print {
+    .no-print {
         display: none !important;
     }
 }
@@ -114,3 +116,10 @@ table tbody th:nth-child(7n+7) {
     border-color: rgb(204, 147, 226);
 }
 
+#dataReset {
+    cursor: pointer;
+}
+
+#printButton {
+    cursor: pointer;
+}
